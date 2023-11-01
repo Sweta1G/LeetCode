@@ -47,7 +47,7 @@ class Solution {
         return j;
     }
     int print2largest(int arr[], int n) {
-        if(n==2) return Math.max(arr[0], arr[1]);
+        if(n==2) return Math.min(arr[0], arr[1]);
         int count=0;
         Arrays.sort(arr);
         for(int i=1; i<n; i++)
