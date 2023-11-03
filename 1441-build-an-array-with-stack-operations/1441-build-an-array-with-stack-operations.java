@@ -14,13 +14,11 @@ class Solution {
         int num=1, i=0;
         do{
             ans.add("Push");
-            if(num != t[i]) {
+            if(num != t[i]) 
                 ans.add("Pop");
-                num++;
-            }
-            else{
-                i++; num++;
-            }
+            else
+                i++;
+            num++;
             
         }while(num<=n && i<t.length);
 
