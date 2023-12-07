@@ -16,6 +16,6 @@ class Solution {
             if(isEven(num.charAt(i))) sb.deleteCharAt(i);
             else return sb.toString();
         }
-        return sb.toString();
+        return "";
     }
 }
