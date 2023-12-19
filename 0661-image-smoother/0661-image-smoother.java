@@ -9,7 +9,7 @@ class Solution {
         return res;
     }
     
-    int smoothen(int[][] img, int x, int y) {
+    private int smoothen(int[][] img, int x, int y) {
         int m = img.length; 
         int n = img[0].length;
         int sum = 0;
