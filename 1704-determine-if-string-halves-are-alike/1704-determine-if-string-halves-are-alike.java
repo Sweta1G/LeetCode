@@ -3,6 +3,7 @@ class Solution {
         // if(c.equals('a') || c.equals('e') || c.equals('i') || c.equals('o') || c.equals('u') || c.equals('A') || c.equals('E') || c.equals('I') || c.equals('O') || c.equals('U')) return true;
         
         if(c=='a' || c=='e' || c=='i' || c=='o' || c=='u' || c=='A' || c=='E' || c=='I' || c=='O' || c=='U') return true;
+        
         return false;
     }
     public boolean halvesAreAlike(String s) {
