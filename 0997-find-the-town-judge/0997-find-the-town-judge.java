@@ -10,7 +10,7 @@ class Solution {
 
         int ans = -1;
 
-        for (int i = 1; i <= n; i++) {
+        for (int i = 0; i <= n; i++) {
             if (trusting[i] == 0 && trusted[i] == n - 1)
                 ans = i;
         }
