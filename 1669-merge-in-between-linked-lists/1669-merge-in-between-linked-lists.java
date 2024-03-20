@@ -25,7 +25,7 @@ class Solution {
         ListNode head= list2;
         while(end.next!=null) end= end.next;
         end.next= curr;
-        xy.next= head;
+        xy.next= list2;
         return list1;
     }
 }
