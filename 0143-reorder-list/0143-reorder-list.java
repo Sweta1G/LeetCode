@@ -10,7 +10,6 @@
  */
 class Solution {
     private ListNode findLast(ListNode head){
-        // ListNode curr= head;
         while(head.next.next!=null)
             head=head.next;
         ListNode last= head.next;
@@ -18,7 +17,6 @@ class Solution {
         return last;
     }
     private int length(ListNode head){
-        // ListNode curr= head;
         int c=0;
         while(head!=null){
             head= head.next;
@@ -31,12 +29,11 @@ class Solution {
         int size= length(head);
         int c=0;
         ListNode curr= head;
-        while(c<size/2){
-                ListNode end= findLast(head);
-                end.next= curr.next;
-                curr.next= end;
-                c++;
-                curr= curr.next.next;
+        while(c++<size/2){
+            ListNode end= findLast(head);
+            end.next= curr.next;
+            curr.next= end;
+            curr= curr.next.next;
             if(curr==null) break;
         }
         
