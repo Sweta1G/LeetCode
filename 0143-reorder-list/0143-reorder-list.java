@@ -10,18 +10,18 @@
  */
 class Solution {
     private ListNode findLast(ListNode head){
-        ListNode curr= head;
-        while(curr.next.next!=null)
-            curr=curr.next;
-        ListNode last= curr.next;
-        curr.next= null;
+        // ListNode curr= head;
+        while(head.next.next!=null)
+            head=head.next;
+        ListNode last= head.next;
+        head.next= null;
         return last;
     }
     private int length(ListNode head){
-        ListNode curr= head;
+        // ListNode curr= head;
         int c=0;
-        while(curr!=null){
-            curr=curr.next;
+        while(head!=null){
+            head= head.next;
             c++;
         }
         return c;
@@ -32,14 +32,12 @@ class Solution {
         int c=0;
         ListNode curr= head;
         while(c<size/2){
-            // if(c%2==0){
                 ListNode end= findLast(head);
                 end.next= curr.next;
                 curr.next= end;
                 c++;
                 curr= curr.next.next;
             if(curr==null) break;
-            // }
         }
         
     }
