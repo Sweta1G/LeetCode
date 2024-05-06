@@ -9,41 +9,6 @@
  * }
  */
 class Solution {
-//      public ListNode removeNodes(ListNode head) {
-//         if (head == null) {
-//             return null;
-//         }
-        
-//         // Reverse the linked list
-//         head = reverse(head);
-        
-//         ListNode current = head;
-//         ListNode maxNode = head;
-        
-//         while (current != null && current.next != null) {
-//             if (current.next.val < maxNode.val) {
-//                 current.next = current.next.next;
-//             } else {
-//                 current = current.next;
-//                 maxNode = current;
-//             }
-//         }
-        
-//         // Reverse the linked list again to get the correct order
-//         return reverse(head);
-//     }
-    
-//     // Helper function to reverse a linked list
-//     private ListNode reverse(ListNode head) {
-//         ListNode prev = null;
-//         while (head != null) {
-//             ListNode next = head.next;
-//             head.next = prev;
-//             prev = head;
-//             head = next;
-//         }
-//         return prev;
-//     }
     private ListNode reverse(ListNode head){
         ListNode prev= null;
         while(head!= null){
