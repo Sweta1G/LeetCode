@@ -10,38 +10,53 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode tail = dummyHead;
-        int carry = 0;
-
-        while (l1 != null || l2 != null || carry != 0) {
-            int digit1 = (l1 != null) ? l1.val : 0;
-            int digit2 = (l2 != null) ? l2.val : 0;
-
-            int sum = digit1 + digit2 + carry;
-            int digit = sum % 10;
-            carry = sum / 10;
-
-            ListNode newNode = new ListNode(digit);
-            tail.next = newNode;
-            tail = tail.next;
-
-            l1 = (l1 != null) ? l1.next : null;
-            l2 = (l2 != null) ? l2.next : null;
+        ListNode ans= new ListNode(0);
+        ListNode t= ans;
+        
+        int c=0;
+        while(l1!= null && l2!= null){
+            int tp=l1.val+l2.val+c;
+            if(tp<10){
+                t.next= new ListNode(tp);
+                c= 0;
+            }
+            else{
+                t.next= new ListNode(tp%10);
+                c=1;
+            }
+            t= t.next;
+            l1= l1.next;
+            l2= l2.next;
         }
-
-        ListNode result = dummyHead.next;
-        dummyHead.next = null;
-        return result;
-
-        // ListNode ansNode= new ListNode(l1.val+l2.val);
-        // while(l2.next != null){
-        //     if(ansNode.val>=10){
-        //         ansNode.val= ansNode.val%10;
-        //         ansNode.next.val= ansNode.next.val+(ansNode.val/10);
-        //     }
-        // }
-        // ansNode.next.val= l1.next.val + l2.next.val;
-        // return ansNode;
+        
+        while(l1!=null){
+            int tp= l1.val+c;
+            if(tp<10){
+                t.next= new ListNode(tp);
+                c= 0;
+            }
+            else{
+                t.next= new ListNode(tp%10);
+                c=1;
+            }
+            t= t.next;
+            l1= l1.next;
+        }
+        while(l2!=null){
+            int tp= l2.val+c;
+            if(tp<10){
+                t.next= new ListNode(tp);
+                c= 0;
+            }
+            else{
+                t.next= new ListNode(tp%10);
+                c=1;
+            }
+            t= t.next;
+            l2= l2.next;
+        }
+        if(c==1)
+            t.next= new ListNode(1);
+        return ans.next;
     }
 }
