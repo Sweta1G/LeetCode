@@ -1,27 +1,34 @@
 class Solution {
-    public int[] searchRange(int[] nums, int target) {
-        int start = binarySearch(nums, target, true);
-        int end=binarySearch(nums, target, false);
-        return new int[]{start, end};
-    }
-    private int binarySearch(int[] nums, int target, boolean isStart){
-        int left = 0, right= nums.length-1;
-        int result = -1;
-        while(left <= right){
-            int pivot = left + (right-left)/2;
-            if (nums[pivot]< target)
-                left = pivot+1;
-            else if (nums[pivot]> target)
-                right = pivot -1;
-            else{
-                result = pivot;
-                if (isStart){
-                    right = pivot -1;
-                }else{
-                    left = pivot +1;
-                }
+    private int bSearch(int arr[], int n, int t, char c){
+        int low= 0, high= n-1, res= -1;
+        if(c=='s'){
+            while(low<=high){
+                int m= low + (high-low)/2;
+            
+                if(arr[m]==t){res= m; high= m-1;}
+                else if(arr[m]<t) low= m+1;
+                else high= m-1;
             }
         }
-        return result;
+        else{
+            while(low<=high){
+                int m= low + (high-low)/2;
+            
+                if(arr[m]==t){res= m; low= m+1;}
+                else if(arr[m]<t) low= m+1;
+                else high= m-1;
+            }
+        }
+        return res;
+    }
+    public int[] searchRange(int[] nums, int target) {
+        int n= nums.length;
+        if(n==0) return new int[]{-1,-1};
+        
+        int s= bSearch(nums,n,target,'s');
+        int e= bSearch(nums,n,target,'e');
+        if(s==-1 || e==-1) return new int[]{-1,-1};
+        
+        return new int[]{s,e};
     }
 }
