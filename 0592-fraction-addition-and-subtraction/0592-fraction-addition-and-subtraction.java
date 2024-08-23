@@ -43,7 +43,7 @@ class Solution {
                 lcm/= i;
             }
         }
-        if(num==0) return String.valueOf(num)+"/1";
+        // if(num==0) return String.valueOf(num)+"/1";
         return String.valueOf(num)+"/"+String.valueOf(lcm);
     }
 }
