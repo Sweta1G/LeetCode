@@ -17,18 +17,6 @@ class Solution {
     public String fractionAddition(String expression) {
         String exp[]= expression.split("(?=[+-])");
         int n= exp.length;
-        
-//         Set<String> set= new HashSet<>();
-//         set.add(parts[0]);
-        
-//         for(int i=1; i<n; i++){
-//             String exp= parts[i];
-//             if(set.contains(complement(exp))) set.remove(complement(exp));
-//             else set.add(exp);
-//         }
-//         if(set.size()==0) return "0/1";
-        // n= set.size();
-        // String[] exp = set.toArray(new String[n]);
         for(int i=0; i<n; i++)
                 if(exp[i].charAt(0)=='+') exp[i]= exp[i].substring(1);
         if(n==1) 
@@ -55,6 +43,7 @@ class Solution {
                 lcm/= i;
             }
         }
+        if(num==0) return String.valueOf(num)+"/1";
         return String.valueOf(num)+"/"+String.valueOf(lcm);
     }
 }
