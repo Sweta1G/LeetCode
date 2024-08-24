@@ -1,64 +1,43 @@
-class Solution {
-    // private int findPosition(ArrayList<Integer> dupe, int x){
-        
-//         for(int i=0; i<dupe.size(); i++){
-//             if(dupe.get(i)==x) return i+1;
-//         }
-//         return -1;
-//     }
-    public String[] findRelativeRanks(int[] score) {
-//         ArrayList<Integer> dupe = new ArrayList<>();
-//         for(int i:score)
-//             dupe.add(i);
-//         Collections.sort(dupe);
-//         Collections.reverse(dupe);
-//         String[] res= new String[score.length];
-        
-//         for(int i=0;i<res.length;i++){
-//             int rank= findPosition(dupe,score[i]);
-//             if(rank==1) res[i]= "Gold Medal";
-//             else if(rank==2) res[i]= "Silver Medal";
-//             else if(rank==3) res[i]= "Bronze Medal";
-//             else res[i]= String.valueOf(rank); 
-//         }
-//         return res;
-        int n = score.length;
-        
-        int maxScore = 0;
-        for (int i = 0 ; i < n ; i++) {
-            maxScore = Math.max(maxScore, score[i]);
-        }
-        
-        int[]  score2Index = new int[maxScore+1];
-        
-        for (int i = 0 ; i < n ; i++) {
-            score2Index[score[i]] = i+1;
-        }
-        
-        String[] ans = new String[n];
-        
-        int place = 1;
-        
-        for (int i = maxScore ; i >= 0 ; i--) {
-            
-            if (score2Index[i] == 0) continue;
-                
-            int actualIndex = score2Index[i] - 1;
-            if (place == 1) {
-                ans[actualIndex] = "Gold Medal";
-            } else if (place == 2) {
-                ans[actualIndex] = "Silver Medal";
-            } else if (place == 3) {
-                ans[actualIndex] = "Bronze Medal";
-            } else {
-                ans[actualIndex] = String.valueOf(place);
-            }
-            place++; 
-        }
-        
-        return ans;
+class Pair{
+    int ele, idx;
+    Pair(int e, int i){
+        this.ele= e;
+        this.idx= i;
     }
-    
-    // 10,3,8,9,4
-    // 10,9,8,4,3
+}
+class Solution {
+    public class PairComparator implements Comparator<Pair>{
+        public int compare(Pair p1, Pair p2){
+            return p2.ele-p1.ele;
+        }
+    }
+    public String[] findRelativeRanks(int[] score) {
+        int n= score.length;
+        if(n==1) return new String[]{"Gold Medal"};
+        else if(n==2){
+            if(score[0]>score[1]) return new String[]{"Gold Medal","Silver Medal"};
+            else return new String[]{"Silver Medal","Gold Medal"};
+        }
+        
+        String prize[]= new String[n];
+        PriorityQueue<Pair> pq= new PriorityQueue<>(new PairComparator());
+        
+        for(int i=0; i<n; i++)
+            pq.add(new Pair(score[i],i));
+        
+        int rank=1;
+        while(pq.size()>0 && rank<=n){
+            if(rank==1)
+                prize[pq.peek().idx]= "Gold Medal";
+            else if(rank==2)
+                prize[pq.peek().idx]= "Silver Medal";
+            else if(rank==3)
+                prize[pq.peek().idx]= "Bronze Medal";
+            else
+                prize[pq.peek().idx]= String.valueOf(rank);
+            rank++;
+            pq.poll();
+        }
+        return prize;
+    }
 }
