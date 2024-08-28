@@ -1,4 +1,18 @@
 class Solution {
+    private boolean isEqual(String key, HashMap<Character,Integer> mp, HashMap<Character,Integer> temp){
+
+        // for(HashMap.Entry<Character,Integer> e : temp.entrySet()){
+        //     if(!mp.containsKey(e.getKey())) return false;
+        //     else if(mp.get(e.getKey())!=e.getValue()) return false;
+        // }
+        // return true;
+
+        // return mp.equals(temp);
+
+        if (mp.size() != temp.size())
+            return false;
+        return mp.entrySet().stream().allMatch(e -> e.getValue().equals(temp.get(e.getKey())));
+    }
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> res= new ArrayList<>();
         
@@ -11,7 +25,8 @@ class Solution {
         while(j<s.length()){
             temp.put(s.charAt(j),temp.getOrDefault(s.charAt(j), 0)+1);
             if(j-i+1==k){
-                if(mp.equals(temp)) res.add(i);
+                // if(mp.equals(temp)) res.add(i);
+                if(isEqual(p,mp,temp)) res.add(i);
                 temp.put(s.charAt(i),temp.get(s.charAt(i))-1);
                 if(temp.get(s.charAt(i))==0) temp.remove(s.charAt(i));
                 i++;
