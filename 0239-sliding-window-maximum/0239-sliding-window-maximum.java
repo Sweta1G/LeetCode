@@ -7,19 +7,17 @@ class Solution {
         Deque<Integer> dq= new ArrayDeque();
         int i=0, j=0;
         while (j<n) {
-            if(dq.size()==0) dq.offerLast(arr[j]);
-            else{
+            if(dq.size()!=0){
                 while(dq.size()!=0 && dq.peekFirst()<arr[j]) dq.pollFirst();
                 while(dq.size()!=0 && dq.peekLast()<arr[j]) dq.pollLast();
-                dq.offerLast(arr[j]);
             }
+            dq.offerLast(arr[j]);
             if(j-i+1==k){
                 if(l<res.length)
                     res[l++]= dq.peekFirst();
                 if(arr[i]==dq.peekFirst()) dq.pollFirst();
                 i++; 
             }
-            // dq.offerLast(arr[j]);
             j++;
         }
 
