@@ -1,51 +1,31 @@
 class Solution {
     public String minWindow(String s, String t) {
-        if (s.isEmpty() || t.isEmpty()) {
-            return "";
-        }
-
-        Map<Character, Integer> dictT = new HashMap<>();
-        for (char c : t.toCharArray()) {
-            int count = dictT.getOrDefault(c, 0);
-            dictT.put(c, count + 1);
-        }
-
-        int required = dictT.size();
-        int l = 0, r = 0;
-        int formed = 0;
-
-        Map<Character, Integer> windowCounts = new HashMap<>();
-        int[] ans = { -1, 0, 0 };
-
-        while (r < s.length()) {
-            char c = s.charAt(r);
-            int count = windowCounts.getOrDefault(c, 0);
-            windowCounts.put(c, count + 1);
-
-            if (dictT.containsKey(c) && windowCounts.get(c).intValue() == dictT.get(c).intValue()) {
-                formed++;
+        int n= s.length();
+        HashMap<Character,Integer> mp= new HashMap<>();
+        for(int i=0; i<t.length();i++)
+            mp.put(t.charAt(i),mp.getOrDefault(t.charAt(i),0)+1);
+        int i=0, j=0, res= Integer.MAX_VALUE, count= mp.size();
+        String sb="";
+        while(j<n){
+            if(mp.containsKey(s.charAt(j))){
+                mp.put(s.charAt(j), mp.get(s.charAt(j))-1);
+                if(mp.get(s.charAt(j))==0) count--;
             }
+            while(count==0 && i<=j){
+                res= Math.min(res,j-i+1);
+                if(res==s.substring(i,j+1).length())
+                    sb= s.substring(i, j+1);
 
-            while (l <= r && formed == required) {
-                c = s.charAt(l);
-
-                if (ans[0] == -1 || r - l + 1 < ans[0]) {
-                    ans[0] = r - l + 1;
-                    ans[1] = l;
-                    ans[2] = r;
+                if(!mp.containsKey(s.charAt(i))) i++;
+                else if(mp.containsKey(s.charAt(i))){
+                    mp.put(s.charAt(i),mp.get(s.charAt(i))+1);
+                    if(mp.get(s.charAt(i))>0) 
+                        count++;
+                    i++;
                 }
-
-                windowCounts.put(c, windowCounts.get(c) - 1);
-                if (dictT.containsKey(c) && windowCounts.get(c).intValue() < dictT.get(c).intValue()) {
-                    formed--;
-                }
-
-                l++;
             }
-
-            r++;
+            j++;
         }
-
-        return ans[0] == -1 ? "" : s.substring(ans[1], ans[2] + 1);
+        return sb;
     }
 }
