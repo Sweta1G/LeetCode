@@ -1,7 +1,6 @@
 class Solution {
     public int trap(int[] height) {
         int n= height.length;
-        // int ml=0, mr=0;
         List<Integer> left= new ArrayList<>(); left.add(height[0]);
         List<Integer> right= new ArrayList<>(); right.add(height[n-1]); int t=0;
         
