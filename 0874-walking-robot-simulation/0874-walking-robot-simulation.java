@@ -1,32 +1,32 @@
-class Pair{
-    int x,y;
-    Pair(int x, int y){
-        this.x=x;
-        this.y=y;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pair pair = (Pair) o;
-        return x == pair.x && y == pair.y;
-    }
+// class Pair{
+//     int x,y;
+//     Pair(int x, int y){
+//         this.x=x;
+//         this.y=y;
+//     }
+//     @Override
+//     public boolean equals(Object o) {
+//         if (this == o) return true;
+//         if (o == null || getClass() != o.getClass()) return false;
+//         Pair pair = (Pair) o;
+//         return x == pair.x && y == pair.y;
+//     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-}
+//     @Override
+//     public int hashCode() {
+//         return Objects.hash(x, y);
+//     }
+// }
 class Solution {
     public int robotSim(int[] commands, int[][] obstacles) {
         int d= -1;
         int i=0, j=0, n= commands.length;
-        HashSet<Pair> set= new HashSet<>();
+        HashSet<String> set= new HashSet<>();
         if(obstacles.length>=0){
             for(int[] obs : obstacles)
-                set.add(new Pair(obs[0],obs[1]));
-            for (Pair p : set) 
-                System.out.println("X: "+p.x+"  Y: "+p.y);
+                set.add(obs[0]+","+obs[1]);
+            // for (Pair p : set) 
+            //     System.out.println("X: "+p.x+"  Y: "+p.y);
             
         }
         System.out.println("HashSet Size: "+set.size());
@@ -56,7 +56,7 @@ class Solution {
                     else if(c=='e') i++;
                     else if(c=='s') j--;
                     else i--;
-                    if(set.size()>0 && set.contains(new Pair(i,j))){ 
+                    if(set.size()>0 && set.contains(i+","+j)){ 
                         // System.out.println("hdfkjedfb");
                         if(c=='n') j--;
                         else if(c=='e') i--;
