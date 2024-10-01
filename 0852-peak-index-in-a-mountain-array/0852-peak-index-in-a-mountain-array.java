@@ -5,11 +5,12 @@ class Solution {
         if(arr[n-1]>arr[n-2]) return arr[n-1];
         
         int low=0, high= n-1;
-        int m= low + (high-low)/2;
         while(low<high){
+                    int m= low + (high-low)/2;
+
             if(arr[m]<arr[m+1]) low= m+1;
             else high= m;
-            m= low + (high-low)/2;
+            // m= low + (high-low)/2;
         }
         return low;
     }
