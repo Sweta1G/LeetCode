@@ -1,9 +1,5 @@
-class Solution(object):
-    def check(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: bool
-        """
+class Solution:
+    def check(self, nums: List[int]) -> bool:
         count = 0
         n = len(nums)
 
