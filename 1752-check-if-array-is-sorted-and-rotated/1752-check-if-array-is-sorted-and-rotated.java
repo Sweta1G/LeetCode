@@ -6,6 +6,6 @@ class Solution {
             if(nums[i-1]>nums[i]) count++;
         }
         if(nums[n-1]>nums[0]) count++;
-        return count<=1;
+        return count==1 || count==0;
     }
 }
