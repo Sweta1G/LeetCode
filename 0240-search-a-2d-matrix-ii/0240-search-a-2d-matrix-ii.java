@@ -8,7 +8,7 @@ class Solution {
                 col--;
                 
             else row++;
-            // if(row>mat.length || col<0) break;
+            if(row>mat.length || col<0) break;
             
         }
         
