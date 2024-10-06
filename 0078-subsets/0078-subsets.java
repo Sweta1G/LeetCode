@@ -1,25 +1,21 @@
 class Solution {
-    public static void calcSubset(int a[], List<List<Integer> > res, List<Integer> subset, int index){
-        res.add(new ArrayList<>(subset));
-        
-        for (int i = index; i < a.length; i++) {
-            subset.add(a[i]);
-            calcSubset(a, res, subset, i + 1);
-            subset.remove(subset.size() - 1);
+    private void solve(int[] nums,int index, List<Integer> tmp, List<List<Integer>> res){
+        // if(index>=nums.length){res.add(tmp);}
+        if (index == nums.length) {
+            res.add(new ArrayList<>(tmp));
+            return;
         }
-    }
+        tmp.add(nums[index]);
+        solve(nums, index + 1, tmp, res);
 
-    public static List<List<Integer>> findSubsets(int[] a)
-    {
-        List<Integer> subset = new ArrayList<>();
-        List<List<Integer> > res = new ArrayList<>();
-
-        int index = 0;
-        calcSubset(a, res, subset, index);
-
-        return res;
+        tmp.remove(tmp.size() - 1);
+        solve(nums, index + 1, tmp, res);
     }
     public List<List<Integer>> subsets(int[] nums) {
-        return findSubsets(nums);
+        List<List<Integer>> res= new ArrayList<>();
+        List<Integer> tmp= new ArrayList<>();
+        
+        solve(nums,0,tmp,res);
+        return res;
     }
 }
