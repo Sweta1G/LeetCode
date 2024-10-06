@@ -20,29 +20,12 @@ class Solution {
         
         char x= ip.charAt(i);
         String value= help(x);
-        // for(int z= 0; z<value.length(); z++){
-        //     solve(ip,i+1,op+value.substring(z,z+1),res);
-        //     if(op.length()>0)
-        //         op= op.substring(0,op.length()-1);
-        // }
         for(char c : value.toCharArray()){
             op.append(c);
             solve(ip,i+1,op,res);
             op.deleteCharAt(op.length()-1);
         }
         
-        
-//         if (idx == digits.length()) {
-//             res.add(comb.toString());
-//             return;
-//         }
-        
-//         String letters = digitToLetters.get(digits.charAt(idx));
-//         for (char letter : letters.toCharArray()) {
-//             comb.append(letter);
-//             backtrack(digits, idx + 1, comb, res, digitToLetters);
-//             comb.deleteCharAt(comb.length() - 1);
-//         }
     }
     public List<String> letterCombinations(String digits) {
         int n= digits.length();
