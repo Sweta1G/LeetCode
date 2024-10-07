@@ -28,7 +28,8 @@ class Solution {
         int[] next= nextSmallest(heights,n);
         int[] prev= prevSmallest(heights,n);
         
-        int res= Integer.MIN_VALUE;
+        // int res= Integer.MIN_VALUE;
+        int res= -1;
         for(int i=0; i<n; i++){
             int l= heights[i];
             if(next[i]==-1) next[i]=n;
