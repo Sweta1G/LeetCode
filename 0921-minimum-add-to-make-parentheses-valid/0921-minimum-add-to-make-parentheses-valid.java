@@ -8,6 +8,6 @@ class Solution {
                 else close++;
             }
         }
-        return Math.abs(open+close);
+        return open+close;
     }
 }
