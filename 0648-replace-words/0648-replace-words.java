@@ -29,6 +29,7 @@ class Solution {
             
         }
         return word;
+
     }
     public void insert(String word){
         Trie node = root;
@@ -49,4 +50,4 @@ class Trie{
         children = new Trie[26];
         isEnd =false;
     }
-}
+} 
