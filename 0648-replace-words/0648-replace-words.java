@@ -1,37 +1,52 @@
 class Solution {
+    Trie root;
     public String replaceWords(List<String> dictionary, String sentence) {
-        Set<String> dict = new HashSet<>(dictionary);
-        String ans = "";
-        int i = 0;
-       while(i < sentence.length())
-        {
-            String word = "";
-            int j = i;
-            int found = -1;
-            while((j < sentence.length()) && (sentence.charAt(j) != ' '))
-            {
-                word += sentence.charAt(j);
-                if((found == -1) && (dict.contains(word)))
-                {
-                    ans += word;
-                    ans += " ";
-                    found = 1;
-                }
-                j ++;
-            }
-            while((j < sentence.length()) && (sentence.charAt(j) == ' '))
-            {
-                j ++;
-            }
-            i = j;
-            
-            if(found == -1)
-            {
-                ans += word;
-                ans += " ";
-            }
+        root = new Trie();
+        for(String word : dictionary){
+            insert(word);
         }
-        return ans.substring(0, ans.length()-1);
+        StringBuilder result = new StringBuilder();
+        String []  input = sentence.split(" ");
+        for(String i : input){
+            result.append(search(i));
+            result.append(" ");
+        }
+        return result.toString().trim();
     }
-    
+    public String search(String word){
+        Trie node = root;
+        int j = 0;
+        for(char c : word.toCharArray()){
+            int i = c - 'a';
+            j++;
+            if(node.children[i] == null){
+                return word;
+            }else if(node.children[i].isEnd){
+                return word.substring(0, j);
+            }else{
+                node = node.children[i];
+            }
+            
+        }
+        return word;
+    }
+    public void insert(String word){
+        Trie node = root;
+        for(char c: word.toCharArray()){
+            int i = c - 'a';
+            if(node.children[i] == null){
+                node.children[i] = new Trie();
+            }
+            node = node.children[i];
+        }
+        node.isEnd = true;
+    }
+}
+class Trie{
+    Trie [] children;
+    boolean isEnd;
+    public Trie(){
+        children = new Trie[26];
+        isEnd =false;
+    }
 }
