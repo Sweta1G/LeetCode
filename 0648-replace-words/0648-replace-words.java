@@ -1,29 +1,37 @@
 class Solution {
-    private String solve(List<String> dict, String str){
-        String res[]= new String[101]; int min= Integer.MAX_VALUE;
-        Arrays.fill(res,"");
-        
-        for(String s: dict){
-            int n= s.length();
-            if(n>str.length()) continue;
-            String sub= str.substring(0,n);
-            if(s.equals(sub) && min>n){
-                res[sub.length()]= s;
-                min= n;
+    public String replaceWords(List<String> dictionary, String sentence) {
+        Set<String> dict = new HashSet<>(dictionary);
+        String ans = "";
+        int i = 0;
+       while(i < sentence.length())
+        {
+            String word = "";
+            int j = i;
+            int found = -1;
+            while((j < sentence.length()) && (sentence.charAt(j) != ' '))
+            {
+                word += sentence.charAt(j);
+                if((found == -1) && (dict.contains(word)))
+                {
+                    ans += word;
+                    ans += " ";
+                    found = 1;
+                }
+                j ++;
+            }
+            while((j < sentence.length()) && (sentence.charAt(j) == ' '))
+            {
+                j ++;
+            }
+            i = j;
+            
+            if(found == -1)
+            {
+                ans += word;
+                ans += " ";
             }
         }
-        for(String s: res)
-            if(s.length()!=0) return s;
-        return "";
+        return ans.substring(0, ans.length()-1);
     }
-    public String replaceWords(List<String> dict, String str) {
-        String strs[]= str.split(" ");
     
-        for(int i=0; i<strs.length; i++){
-            String prefix= solve(dict,strs[i]);
-            if(prefix.length()==0) continue;
-            strs[i]= prefix;
-        }
-        return String.join(" ", strs);
-    }
 }
