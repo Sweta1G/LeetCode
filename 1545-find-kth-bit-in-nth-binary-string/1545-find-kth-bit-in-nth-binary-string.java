@@ -30,10 +30,4 @@ class Solution {
         System.out.println(res.get(n-1));
         return res.get(n-1).charAt(k-1);
     }
-    // s3- 0 1 1 1 0 0 1
-    // s4- 0 1 1 1 0 0 1
-    //     0 1 1 0 0 0 1
-    
-    // 1 0 0 0 1 1 0
-    // 0 1 1 0 0 0 1
 }
