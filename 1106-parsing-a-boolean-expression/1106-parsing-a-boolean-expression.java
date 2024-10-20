@@ -33,7 +33,6 @@ class Solution {
                 while(st.size()>1 && st.peek()!='(') 
                     e.append(st.pop());
                 st.pop();
-                // e= e.reverse();
                 char operation= st.pop();
                 char evaluated= '#'; 
                 switch(operation){
