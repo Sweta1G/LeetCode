@@ -26,7 +26,6 @@ class Solution {
     
     
     public static boolean parseBoolExpr(String exp) {
-        // int n= exp.length();
         Stack<Character> st= new Stack<>();
         for(char c: exp.toCharArray()){
             if(c==')'){
@@ -36,14 +35,12 @@ class Solution {
                 st.pop();
                 // e= e.reverse();
                 char operation= st.pop();
-                System.out.println("Expression : "+e+"\tOperation: "+operation);
                 char evaluated= '#'; 
                 switch(operation){
                     case '&': evaluated= parse_and(e.toString()); break;
                     case '|': evaluated= parse_or(e.toString()); break;
                     case '!': evaluated= parse_not(e.toString()); break;
                 }
-                System.out.println("Evaluated: "+evaluated);
                 st.push(evaluated);
             }
             else st.push(c);
