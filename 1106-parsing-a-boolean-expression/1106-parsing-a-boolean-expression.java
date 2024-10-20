@@ -20,7 +20,6 @@ class Solution {
         return res? 't':'f';
     }
     private static char parse_not(String s){
-        if(s.length()==1) return s.charAt(0)=='t'? 'f':'t';
         return s.charAt(0)=='t'? 'f' : 't';
     }
     
@@ -28,6 +27,7 @@ class Solution {
     public static boolean parseBoolExpr(String exp) {
         Stack<Character> st= new Stack<>();
         for(char c: exp.toCharArray()){
+            if(c==',') continue;
             if(c==')'){
                 StringBuilder e = new StringBuilder();
                 while(st.size()>1 && st.peek()!='(') 
@@ -44,7 +44,6 @@ class Solution {
             }
             else st.push(c);
         }
-        // return st.peek();
         return st.peek()=='t'? true:false;
     }
 }
