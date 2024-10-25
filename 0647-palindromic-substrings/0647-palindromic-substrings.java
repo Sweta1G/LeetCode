@@ -1,5 +1,5 @@
 class Solution {
-int count1 = 0;
+    int count1 = 0;
     boolean isPalindrome(String s, int i, int j) {
         while (i <= j) {
             if (s.charAt(i) != s.charAt(j)) {
