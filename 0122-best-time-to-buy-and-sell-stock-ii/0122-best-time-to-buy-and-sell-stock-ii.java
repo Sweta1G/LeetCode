@@ -10,7 +10,9 @@ class Solution {
                 else profit= Math.max(0+next[1],prices[i]+next[0]);
                 curr[b]= profit;
             }
-            System.arraycopy(curr, 0, next, 0, 2);
+            // System.arraycopy(curr, 0, next, 0, 2);
+            next[0]= curr[0];
+            next[1]= curr[1];
         }
         return curr[0];
     }
