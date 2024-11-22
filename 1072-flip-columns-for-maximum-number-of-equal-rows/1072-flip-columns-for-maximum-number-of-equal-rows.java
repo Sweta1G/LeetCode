@@ -1,6 +1,6 @@
 class Solution {
     public int maxEqualRowsAfterFlips(int[][] mat) {
-        int m= mat.length, n= mat[0].length;
+        int res= 0,n= mat[0].length;
         HashMap<String,Integer> mp= new HashMap<>();
         for(int[] currRow : mat){
             String row="";
@@ -11,7 +11,6 @@ class Solution {
             }
             mp.put(row,mp.getOrDefault(row,0)+1);
         }
-        int res= 0;
         for(int freq : mp.values())
             res= Math.max(res,freq);
         return res;
