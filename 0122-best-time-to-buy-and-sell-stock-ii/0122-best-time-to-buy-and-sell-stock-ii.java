@@ -1,22 +1,26 @@
 class Solution {
-    
-    private int find(int arr[], int i, int b, int n, int[][] dp){
-        if(i==n) return 0;
-        if(dp[i][b]!=-1) return dp[i][b];
-        int res;
-        if(b==0)
-            res= Math.max(0+find(arr,i+1,0,n,dp),-arr[i]+find(arr,i+1,1,n,dp));
-        else
-            res= Math.max(0+find(arr,i+1,1,n,dp),arr[i]+find(arr,i+1,0,n,dp));
-        dp[i][b]= res;
-        return dp[i][b];
+    private int find(int arr[], int n, int[][] dp){
+        dp[n][0]=dp[n][1]= 0;
+        for(int i=n-1; i>=0; i--){
+            int res;
+            for(int b=0; b<2; b++){
+                if(b==0)
+                    // res=Math.max(0+find(arr,i+1,0,n,dp),-arr[i]+find(arr,i+1,1,n,dp));
+                    res= Math.max(0+dp[i+1][0],-arr[i]+dp[i+1][1]);
+                else
+                    // res= Math.max(0+find(arr,i+1,1,n,dp),arr[i]+find(arr,i+1,0,n,dp));
+                    res= Math.max(0+dp[i+1][1],arr[i]+dp[i+1][0]);
+                dp[i][b]= res;
+            }
+        }
+        return dp[0][0];
     }
     public int maxProfit(int[] prices) {
         int n= prices.length;
-        int dp[][]= new int[n][2];
+        int dp[][]= new int[n+1][2];
         for(int x[] : dp)
             Arrays.fill(x,-1);
-        int res= find(prices,0,0,n,dp);
+        int res= find(prices,n,dp);
         return res;
     }
 }
