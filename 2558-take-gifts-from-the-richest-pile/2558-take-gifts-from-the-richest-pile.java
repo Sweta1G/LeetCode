@@ -4,11 +4,9 @@ class Solution {
         for(int i : gifts)
             pq.add(i);
         long sum= 0;
-        while(k-- > 0){
+        while(k-- > 0)
             pq.add((int) Math.floor(Math.sqrt(pq.poll())));
-            // pq.add(t);
-        }
-        while(pq.size()>0)
+        while(!pq.isEmpty())
             sum+= pq.poll();
         return sum;
     }
