@@ -5,8 +5,7 @@ class Solution {
             pq.add(i);
         long sum= 0;
         while(k-- > 0){
-            int x= pq.poll();
-            int t= (int) Math.floor(Math.sqrt(x));
+            int t= (int) Math.floor(Math.sqrt(pq.poll()));
             pq.add(t);
         }
         while(pq.size()>0)
