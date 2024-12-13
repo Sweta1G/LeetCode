@@ -14,8 +14,8 @@ class Solution {
             int x= arr[0], id= arr[1];
             if(!marked[id]){
                 sum+=x;
-                if(id+1<n && !marked[id+1]) marked[id+1]= true;
-                if(id-1>=0 && !marked[id-1]) marked[id-1]= true;
+                if(id+1<n) marked[id+1]= true;
+                if(id-1>-1) marked[id-1]= true;
                 marked[id]= true;
             }
         }
