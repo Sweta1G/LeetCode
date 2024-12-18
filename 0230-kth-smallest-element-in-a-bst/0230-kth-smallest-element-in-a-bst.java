@@ -16,9 +16,9 @@
 class Solution {
     private void trav(TreeNode root, PriorityQueue<Integer> pq, int k){
         if(root==null) return;
+        trav(root.left,pq,k);
         pq.add(root.val);
         if(pq.size()>k) pq.poll();
-        trav(root.left,pq,k);
         trav(root.right,pq,k); 
     }
     public int kthSmallest(TreeNode root, int k) {
